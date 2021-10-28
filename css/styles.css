@@ -4,7 +4,7 @@ body {
   background-image: url("../images/concrete_seamless.png");
 }
 
-header,
+body > header,
 .nav_links {
   display: flex;
   flex-direction: column;
@@ -33,7 +33,8 @@ header,
   justify-content: center;
   align-items: center;
 }
-.card {
+.card,
+.card_big {
   flex-basis: 450px;
 }
 .about {
@@ -44,18 +45,91 @@ header,
   border: solid 10px #50c7c7;
   margin: 10px;
   width: 300px;
-  justify-content: space-around;
 }
-/*
-@keyframes header > img {
+.gallery,
+#gallery {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+img#logo {
+  animation-name: img-entrance;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes img-entrance {
   from {
-    transform: scale(1);
+    width: 50px;
+    opacity: 0;
   }
 
   to {
-    transform: translateX(100%);
+    width: 425px;
+    opacity: 1;
   }
-}*/
+}
+.card_big {
+  flex-shrink: auto;
+}
+
+@media only screen and (min-width: 850px) {
+  body > header {
+    align-items: flex-start;
+  }
+  img#logo {
+    position: -webkit-sticky;
+    position: sticky; /* Attempted sticky header*/
+    align-self: flex-start;
+    flex: 1;
+  }
+  .nav_links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  .nav_items {
+    justify-items: flex-end;
+  }
+  .card {
+    flex-basis: 250px;
+    align-items: space-between;
+  }
+  .pricing {
+    flex-flow: row;
+  }
+}
+@media screen and (prefers-reduced-motion) {
+  img#logo {
+    animation-iteration-count: 0;
+    width: 425px;
+  }
+}
+
+@media print {
+  body {
+    background-image: none;
+  }
+  .nav_links {
+    flex-flow: row;
+  }
+  .pricing {
+    margin-bottom: auto;
+    flex-flow: row;
+  }
+  .card {
+    border: 2px #45addd;
+    flex-basis: 250px;
+  }
+  .gallery,
+  #gallery {
+    display: none;
+  }
+}
 
 /*Card is big, tried setting flex basis, this ddin't fix the issue
-Why wont the arrow work?? */
+Cant align links right
+Images not centering
+Links not spreading out when printing
+ */
